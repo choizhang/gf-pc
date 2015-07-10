@@ -1,7 +1,7 @@
 # gf-pc
 广发证券angularjs前端框架
 
-选用的基本种子是generator-gulp-angular。（v0.12.1）
+选用的基本种子是[generator-gulp-angular（v0.12.1）](https://github.com/Swiip/generator-gulp-angular)
 
 理由：
 
@@ -9,23 +9,25 @@
 
 安装完成后，发现目前的版本还是存在一些缺陷，这里进行了如下的改造。
 
-1. 整合进了gulp-sprite-generator，依赖的是dist里面的css和src里面的图片，拼合后存放于dist中
-    gulp.task('sprites', function () {
-        var spriteOutput;
+1. 整合进了[gulp-sprite-generator（v0.12.1）](https://github.com/gobwas/gulp-sprite-generator)，依赖的是dist里面的css和src里面的图片，拼合后存放于dist中
+```javascript
+gulp.task('sprites', function () {
+    var spriteOutput;
 
-        spriteOutput = gulp.src("./dist/styles/*.css")
-            .pipe(sprite({
-                baseUrl: "./src/assets/",
-                spriteSheetName: "sprite.png",
-                spriteSheetPath: "../assets/images"
-            }));
+    spriteOutput = gulp.src("./dist/styles/*.css")
+        .pipe(sprite({
+            baseUrl: "./src/assets/",
+            spriteSheetName: "sprite.png",
+            spriteSheetPath: "../assets/images"
+        }));
 
-        spriteOutput.css
-            .pipe($.csso())
-            .pipe(gulp.dest("./dist/styles"));
+    spriteOutput.css
+        .pipe($.csso())
+        .pipe(gulp.dest("./dist/styles"));
 
-        return spriteOutput.img.pipe(gulp.dest("./dist/assets/images"));
-    });
+    return spriteOutput.img.pipe(gulp.dest("./dist/assets/images"));
+});
+```
 
 2. 图片压缩。如果你使用的是es6的模板，在build里面是没有图片压缩的
 
