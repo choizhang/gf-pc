@@ -14,7 +14,7 @@
 修改说明
 --------------------------------------------------
 
-1. 整合进了[gulp-sprite-generator](https://github.com/gobwas/gulp-sprite-generator)，依赖的是dist里面的css和src里面的图片，拼合后存放于dist中
+1、 整合进了[gulp-sprite-generator](https://github.com/gobwas/gulp-sprite-generator)，依赖的是dist里面的css和src里面的图片，拼合后存放于dist中
 ```javascript
 gulp.task('sprites', function () {
     var spriteOutput;
@@ -34,7 +34,7 @@ gulp.task('sprites', function () {
 });
 ```
 
-2. 图片压缩。如果你使用的是es6的模板，在build里面是没有图片压缩的
+2、图片压缩。如果你使用的是es6的模板，在build里面是没有图片压缩的
 
 ```javascript
 gulp.task('images', function () {
@@ -48,7 +48,7 @@ gulp.task('images', function () {
 });
 ```
 
-3. build的task也有修改。由于图片的拼合依赖build1的执行完成，所以这里使用了runSequence来保证同步执行
+3、build的task也有修改。由于图片的拼合依赖build1的执行完成，所以这里使用了runSequence来保证同步执行
 
 ```javascript
 gulp.task('build1', ['html', 'fonts', 'other']);
@@ -58,6 +58,6 @@ gulp.task('build', function() {
 });
 ```
 
-4. 该模板如果新建了controller，service等，需要在index.module.js里面手动添加。
+4、该模板如果新建了controller，service等，需要在index.module.js里面手动添加。
 
-5. 这里目前没有采用oclazyload这种按页码加载资源的方式，而是在build之后会将所有的css和js都各自合并成一个文件。这个结论是基于目前项目还不算太复杂，资源文件的体积不会太大的方面来考虑的。
+5、这里目前没有采用oclazyload这种按页码加载资源的方式，而是在build之后会将所有的css和js都各自合并成一个文件。这个结论是基于目前项目还不算太复杂，资源文件的体积不会太大的方面来考虑的。
